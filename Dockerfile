@@ -1,6 +1,6 @@
-FROM debian:wheezy
-
-MAINTAINER blacktop, https://github.com/blacktop
+FROM debian:jessie
+# based on blacktop bro
+MAINTAINER danielguerra, https://github.com/danielguerra
 
 #Prevent daemon start during install
 RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d && \
@@ -28,19 +28,12 @@ make \
 swig \
 curl \
 g++ \
+geoip-database \
+geoip-database-extra \
+tor-geoipdb \
 gcc --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install the GeoIPLite Database
-ADD /geoip /usr/share/GeoIP/
-RUN \
-gunzip /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
-gunzip /usr/share/GeoIP/GeoLiteCity.dat.gz && \
-rm -f /usr/share/GeoIP/GeoLiteCityv6.dat.gz && \
-rm -f /usr/share/GeoIP/GeoLiteCity.dat.gz && \
-ln -s /usr/share/GeoIP/GeoLiteCityv6.dat /usr/share/GeoIP/GeoIPCityv6.dat && \
-ln -s /usr/share/GeoIP/GeoLiteCity.dat /usr/share/GeoIP/GeoIPCity.dat
 
 # ipsumdump
 WORKDIR /tmp
