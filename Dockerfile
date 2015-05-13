@@ -35,7 +35,7 @@ gcc --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#Install  ipsumdump
+#Install  ipsumdump, changed git ?
 
 RUN \
 git clone --recursive https://github.com/kohler/ipsumdump.git && \
