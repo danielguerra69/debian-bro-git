@@ -50,12 +50,12 @@ cd /actor-framework && ./configure && make && make install && rm -rf /actor-fram
 # Install Bro and remove install dir after to conserve space
 RUN  \
 git clone --recursive git://git.bro.org/bro && \
-cd bro && ./configure --prefix=/nsm/bro --enable-broker && \
+cd /bro && ./configure --prefix=/nsm/bro --enable-broker && \
 make && \
 make install && \
 cd aux/plugins/elasticsearch && \
 ./configure && make && make install && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+rm -rf /bro /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PATH /nsm/bro/bin:$PATH
 
