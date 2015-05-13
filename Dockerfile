@@ -35,23 +35,18 @@ gcc --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# ipsumdump
-WORKDIR /tmp
-RUN git clone --recursive https://github.com/kohler/ipsumdump.git
-WORKDIR /tmp/ipsumdump
-RUN ./configure
-RUN make
-RUN make install
+#Install  ipsumdump
 
-#actor framework caf to enable broker
-WORKDIR /tmp
-RUN git clone --recursive https://github.com/actor-framework/actor-framework.git
-WORKDIR /tmp/actor-framework
-RUN ./configure
-RUN make
-RUN make install
+RUN \
+git clone --recursive https://github.com/kohler/ipsumdump.git && \
+cd /ipsumdump && ./configure && \
+make && make install && rm -rf /ipsumdump
 
-WORKDIR /tmp
+#Install actor framework caf to enable broker
+RUN \
+git clone --recursive https://github.com/actor-framework/actor-framework.git && \
+cd /actor-framework && ./configure && make && make install && rm -rf /actor-framework
+
 # Install Bro and remove install dir after to conserve space
 RUN  \
 git clone --recursive git://git.bro.org/bro && \
