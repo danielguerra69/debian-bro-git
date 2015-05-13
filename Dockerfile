@@ -38,13 +38,13 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 #Install  ipsumdump, changed git ?
 
 RUN \
-git clone --recursive https://github.com/kohler/ipsumdump.git && \
+git clone --recursive git://github.com/kohler/ipsumdump && \
 cd /ipsumdump && ./configure && \
 make && make install && rm -rf /ipsumdump
 
 #Install actor framework caf to enable broker
 RUN \
-git clone --recursive https://github.com/actor-framework/actor-framework.git && \
+git clone --recursive git://github.com/actor-framework/actor-framework && \
 cd /actor-framework && ./configure && make && make install && rm -rf /actor-framework
 
 # Install Bro and remove install dir after to conserve space
