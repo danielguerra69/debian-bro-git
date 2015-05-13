@@ -58,7 +58,7 @@ git clone --recursive git://git.bro.org/bro && \
 cd bro && ./configure --prefix=/nsm/bro --enable-broker && \
 make && \
 make install && \
-cd aux\plugins\elasticsearch && \
+cd aux/plugins/elasticsearch && \
 ./configure && make && make install && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
