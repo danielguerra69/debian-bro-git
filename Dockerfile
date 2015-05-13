@@ -31,12 +31,21 @@ g++ \
 geoip-database \
 geoip-database-extra \
 tor-geoipdb \
+libsnappy-dev \
+zlib1g-dev \
+libbz2-dev \
+libgflags-dev \
+autoconf \
 gcc --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#Install  ipsumdump, changed git ?
+#Install libclick
+RUN \
+git clone --recursive git://github.com/kohler/click && \
+cd /click && ./configure && make && make install && rm -rf /click
 
+#Install  ipsumdump, changed git ?
 RUN \
 git clone --recursive git://github.com/kohler/ipsumdump && \
 cd /ipsumdump && ./configure && \
