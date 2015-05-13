@@ -32,6 +32,7 @@ geoip-database \
 geoip-database-extra \
 tor-geoipdb \
 autoconf \
+ca-certificates \
 gcc --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
