@@ -52,8 +52,24 @@ cd /bro && ./configure --prefix=/nsm/bro --enable-broker && \
 make && \
 make install && \
 cd aux/plugins/elasticsearch && \
-./configure && make && make install && \
-rm -rf /bro /var/lib/apt/lists/* /tmp/* /var/tmp/*
+./configure && make && make install
+
+RUN \
+  apt-get -y remove \
+    build-essential \
+    git-core \
+    bison \
+    cmake \
+    flex \
+    gawk \
+    make \
+    swig \
+    g++ \
+    autoconf \
+    doxygen \
+    gcc && \
+  apt-get -y autoremove && \
+  rm -rf /bro /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV PATH /nsm/bro/bin:$PATH
 
