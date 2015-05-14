@@ -36,9 +36,9 @@ ca-certificates \
 ocl-icd-opencl-dev \
 libboost-dev \
 doxygen \
-gcc --no-install-recommends && \
-apt-get clean && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+openssh-server \
+pwgen \
+gcc --no-install-recommends
 
 #Install actor framework caf to enable broker
 RUN \
@@ -54,6 +54,7 @@ make install && \
 cd aux/plugins/elasticsearch && \
 ./configure && make && make install
 
+#cleanup
 RUN \
   apt-get -y remove \
     build-essential \
@@ -74,6 +75,5 @@ RUN \
 ENV PATH /nsm/bro/bin:$PATH
 
 
-ENTRYPOINT ["bro"]
-
-CMD ["-h"]
+#start sshd
+CMD [exec,/usr/sbin/sshd,-D]
