@@ -38,24 +38,21 @@ libboost-dev \
 doxygen \
 openssh-server \
 pwgen \
-gcc --no-install-recommends
+gcc --no-install-recommends && \
 
 #Install actor framework caf to enable broker
-RUN \
+cd /tmp && \
 git clone --recursive git://github.com/actor-framework/actor-framework && \
-cd /actor-framework && ./configure && make && make install && rm -rf /actor-framework
+cd actor-framework && ./configure && make && make install && rm -rf /tmp/actor-framework && \
 
 # Install Bro and remove install dir after to conserve space
-RUN  \
+cd /tmp && \
 git clone --recursive git://git.bro.org/bro && \
-cd /bro && ./configure --prefix=/nsm/bro --enable-broker && \
+cd bro && ./configure --prefix=/nsm/bro --enable-broker && \
 make && \
 make install && \
 cd aux/plugins/elasticsearch && \
-./configure && make && make install
-
-#cleanup
-RUN \
+./configure && make && make install && rm -rf /tmp/bro && \
   apt-get -y remove \
     build-essential \
     git-core \
@@ -69,8 +66,8 @@ RUN \
     autoconf \
     doxygen \
     gcc && \
-  apt-get -y autoremove && \
-  rm -rf /bro /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  apt-get -y autoremove && apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
 ENV PATH /nsm/bro/bin:$PATH
 
