@@ -11,7 +11,7 @@ RUN \
 apt-get -qq update && \
 apt-get install -yq libgoogle-perftools-dev \
 build-essential \
-libcurl3-dev \
+libcurl4-gnutls-dev \
 libgeoip-dev \
 libpcap-dev \
 libssl-dev \
