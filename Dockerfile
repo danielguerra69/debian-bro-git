@@ -36,7 +36,6 @@ ca-certificates \
 ocl-icd-opencl-dev \
 libboost-dev \
 doxygen \
-
 gcc --no-install-recommends && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
