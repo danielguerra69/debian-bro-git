@@ -75,4 +75,4 @@ ENV PATH /nsm/bro/bin:$PATH
 
 
 #start sshd
-CMD [exec,/usr/sbin/sshd,-D]
+CMD [/etc/init.d/ssh,start]
