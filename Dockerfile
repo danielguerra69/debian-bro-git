@@ -66,13 +66,21 @@ cd aux/plugins/elasticsearch && \
     autoconf \
     doxygen \
     gcc && \
-  mkdir /var/run/sshd && \
-  chown root:root /var/run/sshd && \
   apt-get -y autoremove && apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+
+RUN \
+apt-get -qq update && \
+apt-get install -y openssh-server && \
+apt-get clean && \
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN \
+mkdir /var/run/sshd && \
+chown root:root /var/run/sshd
 
 ENV PATH /nsm/bro/bin:$PATH
 
 
 #start sshd
-CMD [/etc/init.d/ssh,start]
+CMD [/bin/bash,exec,/usr/sbin/sshd,-D]
