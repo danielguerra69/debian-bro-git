@@ -83,4 +83,4 @@ ENV PATH /nsm/bro/bin:$PATH
 
 EXPOSE 22 22/tcp
 #start sshd
-ENTRYPOINT [ "sshd", "-D" ]
+ENTRYPOINT [ "exec","/usr/sbin/sshd", "-D" ]
