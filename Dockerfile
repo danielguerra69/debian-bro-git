@@ -81,6 +81,6 @@ chown root:root /var/run/sshd
 
 ENV PATH /nsm/bro/bin:$PATH
 
-
+EXPOSE 22 22/tcp
 #start sshd
-CMD [/bin/bash,exec,/usr/sbin/sshd,-D]
+ENTRYPOINT [ "sshd", "-D" ]
